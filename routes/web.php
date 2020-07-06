@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/sign-in','HomeController@signIn')->name('sign_in');
+
+Route::group(['middleware'=>['auth']],function (){
+    Route::get('/dashboard','HomeController@dashboard');
+    Route::post('/posts','PostController@createPost')->name('create_post');
+    Route::get('/posts','PostController@posts')->name('all_posts');
+    Route::post('/comments/{id}','PostController@saveComment')->name('save_comment');
+});
+

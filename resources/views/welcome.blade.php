@@ -1,100 +1,76 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('partials.app')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+@section('content')
+    <div class="optionsPanel">
+        <div class="inner">
+            <form method="POST" action="{{route('sign_in')}}" id="loginForm" class="swap-able active">
+                <h4>Login to your account</h4>
+                <div class="input-block fancy-block">
+                    <span class="fa fa-user"></span>
+                    <label for="usr_username">Username</label>
+                    <input id="usr_username" type="text" name="username">
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="input-block fancy-block">
+                    <span class="fa fa-lock"></span>
+                    <label for="usr_pswrd">Password</label>
+                    <input id="usr_pswrd" type="password" name="password">
                 </div>
+                <button type="submit" class="btn-block btn">Login</button><br>
+                <a href="#">Having some trouble?</a><br>
+                <a class="triggerSwap" href="#signupForm">Don't have account? sign up !</a>
+                {{csrf_field()}}
+            </form>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+            <form id="signupForm" class="swap-able">
+                <h4>Create a new account</h4>
+                <div class="input-block fancy-block">
+                    <span class="fa fa-user"></span>
+                    <label for="usr_username2">Username</label>
+                    <input id="usr_username2" type="text">
+                </div>
+                <div class="input-block fancy-block">
+                    <span class="fa fa-lock"></span>
+                    <label for="usr_pswrd2">Password</label>
+                    <input id="usr_pswrd2" type="password">
+                </div>
+                <div class="input-block fancy-block">
+                    <span class="fa fa-star"></span>
+                    <label for="usr_pswrd3">Confirm Password</label>
+                    <input id="usr_pswrd3" type="password">
+                </div>
+                <div class="input-block fancy-block">
+                    <span class="fa fa-envelope"></span>
+                    <label for="usr_eml">Email</label>
+                    <input id="usr_eml" type="email">
+                </div>
+                <button type="submit" class="btn-block btn">Signup</button><br>
+                <a class="triggerSwap" href="#loginForm">Already have an account? login !</a>
+            </form>
+
+        </div>
+    </div>
+    <main class="contentArea">
+        <div class="contentAreaInner clearfix no-pad-left no-pad-right">
+            <header class="page-header text-center extra-top-pad pad-long">
+                <img src="assets/img/logo-2.png" alt="dumy"><br><br>
+                <strong>CREATING DOCUMENTION WAS NEVER BEEN EASY</strong>
+            </header>
+
+            <div class="steps clearfix">
+                <div class="step">
+                    <i class="fa fa-user"></i>
+                    Create an account
+                </div>
+                <div class="step">
+                    <i class="fa fa-support"></i>
+                    Open a ticket ticket
+                </div>
+                <div class="step">
+                    <i class="fa fa-comments"></i>
+                    Get the premium help
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+
+        </div><!--contenAreaInner-->
+    </main>
+@endsection
